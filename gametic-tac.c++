@@ -1,78 +1,97 @@
-#include <iostream>
-using namespace std;
-
-const int SIZE = 3;
-char board[SIZE][SIZE] = {{'1', '2', '3'}, {'4', '5', '6'}, {'7', '8', '9'}};
-
-void displayBoard() {
-    for (int i = 0; i < SIZE; ++i) {
-        for (int j = 0; j < SIZE; ++j) {
-            cout << board[i][j] << " ";
-        }
-        cout << endl;
-    }
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #cbccd7;
 }
 
-bool isWinner(char player) {
-    // Check rows and columns
-    for (int i = 0; i < SIZE; ++i) {
-        if ((board[i][0] == player && board[i][1] == player && board[i][2] == player) ||
-            (board[0][i] == player && board[1][i] == player && board[2][i] == player)) {
-            return true;
-        }
-    }
-    // Check diagonals
-    if ((board[0][0] == player && board[1][1] == player && board[2][2] == player) ||
-        (board[0][2] == player && board[1][1] == player && board[2][0] == player)) {
-        return true;
-    }
-    return false;
+.container {
+    width: 70%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f4fb;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-bool isDraw() {
-    for (int i = 0; i < SIZE; ++i) {
-        for (int j = 0; j < SIZE; ++j) {
-            if (board[i][j] != 'X' && board[i][j] != 'O') {
-                return false;
-            }
-        }
-    }
-    return true;
+.header {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-void makeMove(char player) {
-    int move;
-    cout << "Player " << player << ", enter your move (1-9): ";
-    cin >> move;
-
-    int row = (move - 1) / SIZE;
-    int col = (move - 1) % SIZE;
-
-    if (board[row][col] != 'X' && board[row][col] != 'O') {
-        board[row][col] = player;
-    } else {
-        cout << "Invalid move, try again." << endl;
-        makeMove(player);
-    }
+.profile-img {
+    width: 150px;
+    height: 200px;
+    border-radius: 50%;
 }
 
-int main() {
-    char currentPlayer = 'X';
-    bool gameWon = false;
+h1 {
+    margin: 10px 0;
+    font-size: 35px;
+      }
 
-    while (!gameWon && !isDraw()) {
-        displayBoard();
-        makeMove(currentPlayer);
-        gameWon = isWinner(currentPlayer);
-        if (gameWon) {
-            displayBoard();
-            cout << "Player " << currentPlayer << " wins!" << endl;
-        } else if (isDraw()) {
-            displayBoard();
-            cout << "The game is a draw!" << endl;
-        }
-        currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
+h2 {
+    margin: 10px 0;
+    font-size: 22px;
+      }
+
+h3 {
+    border-bottom: 2px solid #b1b2ba;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+p {
+    line-height: 2;
+    margin-bottom: 15px;
+}
+
+.experience .job {
+    margin-bottom: 30px;
+}
+
+.contact {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn {
+    display: inline-block;
+    margin: 5px;
+    padding: 20px 450px;
+    border: 1px solid black;
+    border-radius: 20px;
+    color: black;
+    background-color: none;
+    text-decoration: none;
+    position: relative;
+    padding-left: 40px;
+}
+
+.icon1{
+    position: relative;
+    cursor: pointer;
+}
+
+.icon1 {
+        content: "";
+        font-weight: 900;
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
     }
+   
+.btn.email::before {
+    content: "";
+    width: 200px;
+}
 
-    return 0;
+.btn.instagram::before {
+    content: "";
+    width: 200px;
+}
+
+.btn:hover {
+    background-color: black;
+    color: white;
 }
